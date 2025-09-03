@@ -1,11 +1,15 @@
 
 resource "aws_vpc" "vpc_demo" {
   # Arguments
-  region     = "ap-south-1"
-  cidr_block = "10.160.0.0/16"
+  
+  cidr_block = var.cidr_block
+  tags = var.vpc_tags
+  
+  #Meta Arguments
 
-  tags = {
-    Environment = "Development"
-    IaC         = "Terraform"
-  }
+  # lifecycle {
+  #   create_before_destroy = true
+  #   prevent_destroy = true
+  #   ignore_changes = [ cidr_block ]
+  # }
 }
